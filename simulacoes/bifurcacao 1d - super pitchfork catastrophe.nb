@@ -1,0 +1,622 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     25203,        614]
+NotebookOptionsPosition[     23977,        586]
+NotebookOutlinePosition[     24382,        602]
+CellTagsIndexPosition[     24339,        599]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Defining the normal form of the system ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    OverscriptBox["x", "."], "=", 
+    RowBox[{"f", "(", "x", ")"}]}], TraditionalForm]],ExpressionUUID->
+  "fba188f3-e1fe-4412-a002-6c22f37ddd43"],
+ " and its potential function\nfor the Supercritical Pitchfork with \
+Catastrophe bifurcation"
+}], "Text",
+ CellChangeTimes->{{3.9185830793837476`*^9, 3.9185831517114162`*^9}, {
+  3.918583363254404*^9, 3.9185833744479733`*^9}, {3.9185847651600857`*^9, 
+  3.918584771519101*^9}},ExpressionUUID->"40607d2d-e314-4ed6-a8a8-\
+72bd01a8c623"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"x_", ",", "a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{"b", "+", 
+   RowBox[{"a", " ", "x"}], "-", 
+   SuperscriptBox["x", "3"]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"V", "[", 
+   RowBox[{"x_", ",", "a_", ",", "b_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"s", ",", "a", ",", "b"}], "]"}], ",", "s"}], "]"}]}], "/.", 
+   RowBox[{"s", "\[Rule]", "x"}]}]}]}], "Input",
+ CellChangeTimes->{{3.918577387632196*^9, 3.918577397841859*^9}, {
+  3.9185775718050594`*^9, 3.9185775727271013`*^9}, {3.918577858598115*^9, 
+  3.9185778839371033`*^9}, {3.9185779534800625`*^9, 3.9185779878339896`*^9}, {
+  3.9185822498487563`*^9, 3.9185822534265175`*^9}, {3.9185831892209272`*^9, 
+  3.918583189957429*^9}, {3.9185832218530383`*^9, 3.9185832305301943`*^9}, {
+  3.918584780854232*^9, 3.918584799771806*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"6fcc41d0-c95e-4487-a406-0406796e5826"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"CalcRoots", "[", 
+    RowBox[{"a_", ",", "b_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"x", "/.", 
+      RowBox[{"NSolve", "[", 
+       RowBox[{
+        RowBox[{"Reduce", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"x", ",", "a", ",", "b"}], "]"}], "\[Equal]", "0"}], ",", 
+          "x", ",", "Reals"}], "]"}], ",", "x"}], "]"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CreateFPBifPlot", "[", 
+    RowBox[{"pValues_List", ",", "xSValues_List"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"xplot", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"yplot", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"i", "=", "0"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"++", "i"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"Do", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"xplot", ",", "p"}], "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"yplot", ",", "xS"}], "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"xS", ",", 
+             RowBox[{"xSValues", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", "pValues"}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"Transpose", "[", 
+        RowBox[{"{", 
+         RowBox[{"xplot", ",", "yplot"}], "}"}], "]"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9185803971620684`*^9, 3.9185806526371226`*^9}, {
+  3.918580995336486*^9, 3.918580997949301*^9}, {3.9185812307511215`*^9, 
+  3.918581264834578*^9}, {3.918581385212141*^9, 3.918581387719314*^9}, {
+  3.918581438534901*^9, 3.918581500850852*^9}, {3.9185831991817207`*^9, 
+  3.9185832102858458`*^9}, {3.9185848724993715`*^9, 3.9185848761984777`*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"10d8a4a6-3f41-4027-a1a0-15b841f1d1c9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Show", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"Evaluate", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"f", "[", 
+           RowBox[{"x", ",", "a", ",", "b"}], "]"}], ",", 
+          RowBox[{"V", "[", 
+           RowBox[{"x", ",", "a", ",", "b"}], "]"}]}], "}"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "1.6"}], ",", "1.6"}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<x\>\"", ",", "\"\<\!\(\*OverscriptBox[\(x\), \(.\)]\)\>\""}], 
+         "}"}]}], ",", 
+       RowBox[{"PlotLegends", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"\"\<f(x)\>\"", ",", "\"\<V(x)\>\""}], "}"}]}]}], "]"}], ",",
+      "\[IndentingNewLine]", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{
+       RowBox[{"Transpose", "[", 
+        RowBox[{"Reverse", "[", 
+         RowBox[{"Transpose", "[", 
+          RowBox[{"CreateFPBifPlot", "[", 
+           RowBox[{
+            RowBox[{"{", "0", "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"CalcRoots", "[", 
+              RowBox[{"a", ",", "b"}], "]"}], "}"}]}], "]"}], "]"}], "]"}], 
+        "]"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Red", ",", 
+          RowBox[{"PointSize", "[", "Large", "]"}]}], "]"}]}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.918577322337809*^9, 3.9185773544039497`*^9}, {
+   3.9185774080108595`*^9, 3.918577421892589*^9}, {3.9185774834607754`*^9, 
+   3.918577486933223*^9}, {3.9185775767856646`*^9, 3.9185775945778303`*^9}, {
+   3.91857763105445*^9, 3.9185777077216845`*^9}, {3.918577741227668*^9, 
+   3.918577742945712*^9}, {3.9185778043352623`*^9, 3.918577856535593*^9}, {
+   3.9185781590856266`*^9, 3.9185781783081417`*^9}, {3.91857906848162*^9, 
+   3.9185790765279245`*^9}, {3.918579516814504*^9, 3.918579527367208*^9}, {
+   3.9185821712921095`*^9, 3.9185821737552524`*^9}, 3.918582932460418*^9, {
+   3.918583241880268*^9, 3.9185832613630867`*^9}, {3.918584835226518*^9, 
+   3.9185848651402454`*^9}, {3.9185848955018644`*^9, 3.9185848956729813`*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"c4f54c77-020e-44ce-82aa-5b7d7a67696d"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 
+    1., $CellContext`b$$ = -0.07499999999999996, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`a$$], -1, 1}, {
+      Hold[$CellContext`b$$], -1, 1}}, Typeset`size$$ = {430., {116., 122.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = -1, $CellContext`b$$ = -1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Plot[
+         Evaluate[{
+           $CellContext`f[$CellContext`x, $CellContext`a$$, $CellContext`b$$], 
+           $CellContext`V[$CellContext`x, $CellContext`a$$, \
+$CellContext`b$$]}], {$CellContext`x, -1.6, 1.6}, 
+         PlotRange -> {Automatic, {-1, 1}}, 
+         AxesLabel -> {"x", "\!\(\*OverscriptBox[\(x\), \(.\)]\)"}, 
+         PlotLegends -> {"f(x)", "V(x)"}], 
+        ListPlot[
+         Transpose[
+          Reverse[
+           Transpose[
+            $CellContext`CreateFPBifPlot[{0}, {
+              $CellContext`CalcRoots[$CellContext`a$$, $CellContext`b$$]}]]]],
+          PlotStyle -> Directive[Red, 
+           PointSize[Large]]]], 
+      "Specifications" :> {{$CellContext`a$$, -1, 1}, {$CellContext`b$$, -1, 
+         1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{479., {170., 176.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.918582907226798*^9, 3.9185829334999266`*^9}, 
+   3.918583262411386*^9, {3.918584850382927*^9, 3.9185848964959517`*^9}, 
+   3.9186056891523666`*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"f0dbe5ca-b3ef-4576-81df-d057a907f2a1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nPoints", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"FPBifData", "=", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"N", "[", "a", "]"}], ",", 
+          RowBox[{"CalcRoots", "[", 
+           RowBox[{"a", ",", "b"}], "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", 
+          RowBox[{"Subdivide", "[", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1", ",", "nPoints"}], "]"}]}], "}"}]}], 
+       "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"FPPlot", "=", 
+     RowBox[{"CreateFPBifPlot", "[", 
+      RowBox[{
+       RowBox[{"FPBifData", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", 
+       RowBox[{"FPBifData", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"ListPlot", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"FPPlot", ",", 
+        RowBox[{"CreateFPBifPlot", "[", 
+         RowBox[{
+          RowBox[{"{", "a", "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"CalcRoots", "[", 
+            RowBox[{"a", ",", "b"}], "]"}], "}"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<a\>\"", ",", "\"\<\!\(\*SuperscriptBox[\(x\), \(*\)]\)\>\""}], 
+        "}"}]}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Directive", "[", 
+          RowBox[{
+           RowBox[{"Lighter", "[", "Gray", "]"}], ",", 
+           RowBox[{"PointSize", "[", "Medium", "]"}]}], "]"}], ",", 
+         RowBox[{"Directive", "[", 
+          RowBox[{"Red", ",", 
+           RowBox[{"PointSize", "[", "Large", "]"}]}], "]"}]}], "}"}]}]}], 
+     "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9185815875596952`*^9, 3.9185816709381137`*^9}, {
+  3.9185817032360086`*^9, 3.9185817800921984`*^9}, {3.9185818636092396`*^9, 
+  3.918581865534979*^9}, {3.918581946327193*^9, 3.918581959195027*^9}, {
+  3.918582001780759*^9, 3.9185820268715525`*^9}, {3.9185820784499965`*^9, 
+  3.9185821337675743`*^9}, {3.918583283303035*^9, 3.9185832866906805`*^9}, {
+  3.9185849514351635`*^9, 3.918584951783386*^9}, {3.9185850284961247`*^9, 
+  3.918585170303878*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"abb630ad-3592-4b34-8eca-9d07046dce27"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = -0.48, $CellContext`b$$ = 
+    0.03499999999999992, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`a$$], -1, 1}, {
+      Hold[$CellContext`b$$], -1, 1}}, Typeset`size$$ = {
+    360., {113., 118.02801449868832`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = -1, $CellContext`b$$ = -1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`FPBifData = Transpose[
+          Table[{
+            N[$CellContext`a$$], 
+            $CellContext`CalcRoots[$CellContext`a$$, $CellContext`b$$]}, \
+{$CellContext`a$$, 
+            
+            Subdivide[-1, 
+             1, $CellContext`nPoints]}]]; $CellContext`FPPlot = \
+$CellContext`CreateFPBifPlot[
+          Part[$CellContext`FPBifData, 1], 
+          Part[$CellContext`FPBifData, 2]]; ListPlot[{$CellContext`FPPlot, 
+          $CellContext`CreateFPBifPlot[{$CellContext`a$$}, {
+            $CellContext`CalcRoots[$CellContext`a$$, $CellContext`b$$]}]}, 
+         AxesLabel -> {"a", "\!\(\*SuperscriptBox[\(x\), \(*\)]\)"}, 
+         PlotStyle -> {
+           Directive[
+            Lighter[Gray], 
+            PointSize[Medium]], 
+           Directive[Red, 
+            PointSize[Large]]}]), 
+      "Specifications" :> {{$CellContext`a$$, -1, 1}, {$CellContext`b$$, -1, 
+         1}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{408., {167., 173.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.9185817816014533`*^9, 3.9185818674403095`*^9, 3.9185820295009184`*^9, {
+   3.918582081770816*^9, 3.918582135309731*^9}, 3.918583290214195*^9, {
+   3.918585031889251*^9, 3.9185850747080007`*^9}, {3.918585117625804*^9, 
+   3.918585127578104*^9}, 3.91858517128773*^9, 3.9186056893666153`*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"1ca9d792-4afb-4645-8d78-ae8b22975edc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nPoints", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"FPBifData", "=", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"N", "[", "a", "]"}], ",", 
+          RowBox[{"CalcRoots", "[", 
+           RowBox[{"a", ",", "b"}], "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", 
+          RowBox[{"Subdivide", "[", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1", ",", "nPoints"}], "]"}]}], "}"}]}], 
+       "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"FPPlot", "=", 
+     RowBox[{"CreateFPBifPlot", "[", 
+      RowBox[{
+       RowBox[{"FPBifData", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", 
+       RowBox[{"FPBifData", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"GraphicsGrid", "[", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"Evaluate", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"f", "[", 
+                RowBox[{"x", ",", "a", ",", "b"}], "]"}], ",", 
+               RowBox[{"V", "[", 
+                RowBox[{"x", ",", "a", ",", "b"}], "]"}]}], "}"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", 
+              RowBox[{"-", "1.6"}], ",", "1.6"}], "}"}], ",", 
+            RowBox[{"PlotRange", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"Automatic", ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"AxesLabel", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<x\>\"", ",", 
+               "\"\<\!\(\*OverscriptBox[\(x\), \(.\)]\)\>\""}], "}"}]}], ",", 
+            RowBox[{"PlotLegends", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"\"\<f(x)\>\"", ",", "\"\<V(x)\>\""}], "}"}]}]}], "]"}],
+           ",", "\[IndentingNewLine]", 
+          RowBox[{"ListPlot", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", 
+             RowBox[{"Reverse", "[", 
+              RowBox[{"Transpose", "[", 
+               RowBox[{"CreateFPBifPlot", "[", 
+                RowBox[{
+                 RowBox[{"{", "0", "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"CalcRoots", "[", 
+                   RowBox[{"a", ",", "b"}], "]"}], "}"}]}], "]"}], "]"}], 
+              "]"}], "]"}], ",", 
+            RowBox[{"PlotStyle", "\[Rule]", 
+             RowBox[{"Directive", "[", 
+              RowBox[{"Red", ",", 
+               RowBox[{"PointSize", "[", "Large", "]"}]}], "]"}]}]}], "]"}]}],
+          "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"ListPlot", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"FPPlot", ",", 
+            RowBox[{"CreateFPBifPlot", "[", 
+             RowBox[{
+              RowBox[{"{", "a", "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"CalcRoots", "[", 
+                RowBox[{"a", ",", "b"}], "]"}], "}"}]}], "]"}]}], "}"}], ",", 
+          RowBox[{"AxesLabel", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<a\>\"", ",", 
+             "\"\<\!\(\*SuperscriptBox[\(x\), \(*\)]\)\>\""}], "}"}]}], ",", 
+          RowBox[{"PlotStyle", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Directive", "[", 
+              RowBox[{
+               RowBox[{"Lighter", "[", "Gray", "]"}], ",", 
+               RowBox[{"PointSize", "[", "Medium", "]"}]}], "]"}], ",", 
+             RowBox[{"Directive", "[", 
+              RowBox[{"Red", ",", 
+               RowBox[{"PointSize", "[", "Large", "]"}]}], "]"}]}], "}"}]}]}],
+          "]"}]}], "\[IndentingNewLine]", "}"}], "}"}], "\[IndentingNewLine]",
+      "]"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "0.01"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "0.01"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.918582184728754*^9, 3.9185823087009754`*^9}, {
+  3.918582364088579*^9, 3.918582426080262*^9}, {3.9185825587296877`*^9, 
+  3.918582660139517*^9}, {3.918582708415019*^9, 3.9185827126142845`*^9}, {
+  3.9185827437853627`*^9, 3.918582819475917*^9}, {3.9185829667478137`*^9, 
+  3.9185829860080457`*^9}, {3.9185833050866823`*^9, 3.9185833309334264`*^9}, {
+  3.918585200786557*^9, 3.9185852674208355`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"6b7885c9-1996-4fcf-8000-64a6295646a7"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 
+    0.31000000000000005`, $CellContext`b$$ = 0.24, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`a$$], -1, 1, 0.01}, {
+      Hold[$CellContext`b$$], -1, 1, 0.01}}, Typeset`size$$ = {
+    360., {51., 55.314647107252455`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = -1, $CellContext`b$$ = -1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`FPBifData = Transpose[
+          Table[{
+            N[$CellContext`a$$], 
+            $CellContext`CalcRoots[$CellContext`a$$, $CellContext`b$$]}, \
+{$CellContext`a$$, 
+            
+            Subdivide[-1, 
+             1, $CellContext`nPoints]}]]; $CellContext`FPPlot = \
+$CellContext`CreateFPBifPlot[
+          Part[$CellContext`FPBifData, 1], 
+          Part[$CellContext`FPBifData, 2]]; GraphicsGrid[{{
+           Show[
+            Plot[
+             Evaluate[{
+               $CellContext`f[$CellContext`x, $CellContext`a$$, \
+$CellContext`b$$], 
+               $CellContext`V[$CellContext`x, $CellContext`a$$, \
+$CellContext`b$$]}], {$CellContext`x, -1.6, 1.6}, 
+             PlotRange -> {Automatic, {-1, 1}}, 
+             AxesLabel -> {"x", "\!\(\*OverscriptBox[\(x\), \(.\)]\)"}, 
+             PlotLegends -> {"f(x)", "V(x)"}], 
+            ListPlot[
+             Transpose[
+              Reverse[
+               Transpose[
+                $CellContext`CreateFPBifPlot[{0}, {
+                  $CellContext`CalcRoots[$CellContext`a$$, \
+$CellContext`b$$]}]]]], PlotStyle -> Directive[Red, 
+               PointSize[Large]]]], 
+           ListPlot[{$CellContext`FPPlot, 
+             $CellContext`CreateFPBifPlot[{$CellContext`a$$}, {
+               $CellContext`CalcRoots[$CellContext`a$$, $CellContext`b$$]}]}, 
+            AxesLabel -> {"a", "\!\(\*SuperscriptBox[\(x\), \(*\)]\)"}, 
+            PlotStyle -> {
+              Directive[
+               Lighter[Gray], 
+               PointSize[Medium]], 
+              Directive[Red, 
+               PointSize[Large]]}]}}]), 
+      "Specifications" :> {{$CellContext`a$$, -1, 1, 
+         0.01}, {$CellContext`b$$, -1, 1, 0.01}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{408., {105., 111.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.9185822676736755`*^9, 3.918582315441147*^9, 3.918582366838369*^9, {
+   3.9185825918334827`*^9, 3.918582661844741*^9}, 3.918582714090624*^9, {
+   3.918582764793389*^9, 3.918582787933668*^9}, 3.9185828217949247`*^9, {
+   3.9185829689323044`*^9, 3.9185829876481705`*^9}, 3.9185833328190527`*^9, 
+   3.9185852686879597`*^9, 3.918605689643588*^9},
+ CellLabel->"Out[29]=",ExpressionUUID->"92eb4ff9-9006-4afa-9928-dc55a4b8585a"]
+}, Open  ]]
+},
+WindowSize->{1430.25, 780.},
+WindowMargins->{{1152, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cd0dcd1c-342e-4206-ad0c-94faab1bb992"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 582, 14, 56, "Text",ExpressionUUID->"40607d2d-e314-4ed6-a8a8-72bd01a8c623"],
+Cell[1143, 36, 1024, 23, 47, "Input",ExpressionUUID->"6fcc41d0-c95e-4487-a406-0406796e5826"],
+Cell[2170, 61, 2423, 62, 235, "Input",ExpressionUUID->"10d8a4a6-3f41-4027-a1a0-15b841f1d1c9"],
+Cell[CellGroupData[{
+Cell[4618, 127, 2826, 66, 141, "Input",ExpressionUUID->"c4f54c77-020e-44ce-82aa-5b7d7a67696d"],
+Cell[7447, 195, 2459, 52, 365, "Output",ExpressionUUID->"f0dbe5ca-b3ef-4576-81df-d057a907f2a1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9943, 252, 2666, 67, 122, "Input",ExpressionUUID->"abb630ad-3592-4b34-8eca-9d07046dce27"],
+Cell[12612, 321, 2774, 58, 359, "Output",ExpressionUUID->"1ca9d792-4afb-4645-8d78-ae8b22975edc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15423, 384, 4886, 117, 272, "Input",ExpressionUUID->"6b7885c9-1996-4fcf-8000-64a6295646a7"],
+Cell[20312, 503, 3649, 80, 235, "Output",ExpressionUUID->"92eb4ff9-9006-4afa-9928-dc55a4b8585a"]
+}, Open  ]]
+}
+]
+*)
+
