@@ -1,0 +1,9 @@
+Transcritica                        - https://www.geogebra.org/classic/epm7cfpe
+Supercritical Pitchfork             - https://www.geogebra.org/classic/ct38qpe9
+Supercritical Pitchfork Catastrophe - https://www.geogebra.org/classic/q9kt4gv6
+Subcritical Pitchfork               - https://www.geogebra.org/classic/jpzqkmvc
+Subcritical Pitchfork + Saddle-Node - https://www.geogebra.org/classic/q4dfdzgx
+Saddle-Node                         - https://www.geogebra.org/classic/kuuewtw8
+
+
+Sel'kov model with Hopf bifurcation: https://demonstrations.wolfram.com/HopfBifurcationInTheSelkovModel/
