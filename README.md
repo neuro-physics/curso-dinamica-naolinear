@@ -1,5 +1,16 @@
 Material para complementar as aulas de dinâmica não-linear.
 
+# Plots de diagramas de bifurcação
+
+* Transcritica                        - [Mathematica](https://www.wolframcloud.com/obj/girardis/Published/transcritical_bifurcation.nb) / [Geogebra](https://www.geogebra.org/classic/epm7cfpe)
+* Supercritical Pitchfork             - [Mathematica](https://www.wolframcloud.com/obj/girardis/Published/super_pitchfork_bifurcation.nb) / [Geogebra](https://www.geogebra.org/classic/ct38qpe9)
+* Supercritical Pitchfork Catastrophe - [Mathematica](https://www.wolframcloud.com/obj/girardis/Published/super_pitchfork_catastrophe.nb) / [Geogebra](https://www.geogebra.org/classic/q9kt4gv6)
+* Subcritical Pitchfork               - [Mathematica](https://www.wolframcloud.com/obj/girardis/Published/sub_pitchfork_bifurcation.nb) / [Geogebra](https://www.geogebra.org/classic/jpzqkmvc)
+* Saddle-Node                         - [Mathematica](https://www.wolframcloud.com/obj/girardis/Published/saddle-node_bifurcation.nb) / [Geogebra](https://www.geogebra.org/classic/kuuewtw8)
+* Subcritical Pitchfork + Saddle-Node - [Geogebra](https://www.geogebra.org/classic/q4dfdzgx)
+* [Sel'kov model with Hopf bifurcation](https://demonstrations.wolfram.com/HopfBifurcationInTheSelkovModel/)
+
+
 # Slides das aulas
 
 1. https://www.dropbox.com/scl/fi/981zrhsr20tm6blnyb2ma/aula1_minicurso_pos.pptx?rlkey=0ds5oigumt3r1nmtbd4gtpmao&dl=0
